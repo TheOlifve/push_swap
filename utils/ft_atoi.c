@@ -20,7 +20,8 @@ int	ft_ato(const char *str, int i, int num)
 	if (!str)
 		return (0);
 	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
-		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
+		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'
+			|| (str[i] == '+')))
 		i++;
 	if (str[i] == 45)
 		is_neg = is_neg * -1;
