@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS
-# define PS
+#ifndef PS_H
+# define PS_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include "./utils/utils.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include "./utils/utils.h"
 
 typedef struct s_ps
 {
@@ -30,6 +30,5 @@ void	ft_lstadd_back(t_ps **lst, t_ps *new);
 t_ps	*ft_lstlast(t_ps *lst);
 int		ft_lstsize(t_ps *lst);
 t_ps	*ft_lstnew(int num, int index);
-
 
 #endif

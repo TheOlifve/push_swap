@@ -12,20 +12,25 @@
 
 #include "ps.h"
 
-int	valid_args(char **argv)
+int	valid_args(char **argv, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	while (argv[++i])
 	{
 		while (argv[i][j])
 		{
-			if ((argv[i][j] >= 48 && argv[i][j] <= 57) || argv[i][j] == 32
-				|| argv[i][j] == '-' || argv[i][j] == '+')
+			if (argv[i][j] == 32)
 				j++;
+			else if ((argv[i][j] >= 48 && argv[i][j] <= 57))
+			{
+				if ((argv[i][j + 1] >= 48 && argv[i][j + 1] <= 57)
+				|| argv[i][j + 1] == 32 || argv[i][j + 1] == '\0')
+					j++;
+				else
+					return (0);
+			}
+			else if (argv[i][j + 1] >= 48 && argv[i][j + 1] <= 57
+				&& (argv[i][j] == '-' || argv[i][j] == '+'))
+					j++;
 			else
 				return (0);
 		}
@@ -34,7 +39,7 @@ int	valid_args(char **argv)
 	return (1);
 }
 
-char	**indexing(char **argv)
+char	**args_list(char **argv)
 {
 	int		i;
 	int		j;
@@ -43,8 +48,9 @@ char	**indexing(char **argv)
 
 	i = 0;
 	j = -1;
-	if (!valid_args(argv))
-		exit (0);
+	num_list = ft_strdup("");
+	if (!valid_args(argv, 0, 0) || !num_list)
+		msg("ERROR");
 	while (argv[++i])
 	{
 		tmp = ft_split(argv[i], ' ');
@@ -58,10 +64,64 @@ char	**indexing(char **argv)
 	}
 	tmp = ft_split(num_list, ' ');
 	free(num_list);
-	i = -1;
-	while(tmp[++i])
-	 	printf("%s\n", tmp[i]);
 	return (tmp);
+}
+
+int	*sorting(char **str, int i, int j, int k)
+{
+	int	*lst;
+	int	tmp;
+
+	while (str && str[++k])
+		;
+	lst = malloc(sizeof(int) * k);
+	if (!lst)
+		msg("ERROR");
+	k = -1;
+	while (str[++k])
+		lst[k] = ft_atoi(str[k]);
+	while (++i < k)
+	{
+		while (++j < k)
+		{
+			if (lst[i] < lst[j])
+			{
+				tmp = lst[i];
+				lst[i] = lst[j];
+				lst[j] = tmp;
+			}
+		}
+		j = -1;
+	}
+	return (lst);
+}
+
+void	indexing(t_ps **a, char **num_list, int *nlist)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	*lst;
+
+	i = -1;
+	j = -1;
+	while (num_list && num_list[++i])
+		;
+	lst = malloc(sizeof(int) * i);
+	if (!lst)
+		msg("ERROR");
+	i = -1;
+	while (num_list[++i])
+		lst[i] = ft_atoi(num_list[i]);
+	while (++j < i)
+	{
+		k = -1;
+		while (++k < i)
+		{
+			if (lst[j] == nlist[k])
+				ft_lstadd_back(a, ft_lstnew(nlist[k], k));
+		}
+	}
 }
 
 int	main(int argc, char **argv)
@@ -69,21 +129,14 @@ int	main(int argc, char **argv)
 	t_ps	*a;
 	t_ps	*b;
 	int		i;
+	int		*nlist;
 	char	**num_list;
 
 	i = -1;
 	if (argc < 3)
 		return (0);
-	num_list = indexing(argv);
-	//while(num_list[++i])
-		//printf("%s\n", num_list[i]);
-	while (num_list[++i])
-		ft_lstadd_back(&a, ft_lstnew(ft_atoi(num_list[i]), i));
-	// t_ps *t = a;
-	// while (t)
-	// {
-	// 	printf("%d\n", t->num);
-	// 	t = t->next;
-	// }
+	num_list = args_list(argv);
+	nlist = sorting(num_list, -1, -1, -1);
+	indexing(&a, num_list, nlist);
 	return (0);
 }
