@@ -67,76 +67,68 @@ char	**args_list(char **argv)
 	return (tmp);
 }
 
-int	*sorting(char **str, int i, int j, int k)
+void	sorting(t_list *ps, int i, int j, int k)
 {
-	int	*lst;
-	int	tmp;
-
-	while (str && str[++k])
+	while (ps->num_list && ps->num_list[++k])
 		;
-	lst = malloc(sizeof(int) * k);
-	if (!lst)
+	ps->n_cnt = k;
+	ps->srt_lst = malloc(sizeof(int) * k);
+	if (!ps->srt_lst)
 		msg("ERROR");
 	k = -1;
-	while (str[++k])
-		lst[k] = ft_atoi(str[k]);
+	while (ps->num_list[++k])
+		ps->srt_lst[k] = ft_atoi(ps->num_list[k]);
 	while (++i < k)
 	{
 		while (++j < k)
 		{
-			if (lst[i] < lst[j])
+			if (ps->srt_lst[i] < ps->srt_lst[j])
 			{
-				tmp = lst[i];
-				lst[i] = lst[j];
-				lst[j] = tmp;
+				ps->tmp = ps->srt_lst[i];
+				ps->srt_lst[i] = ps->srt_lst[j];
+				ps->srt_lst[j] = ps->tmp;
 			}
 		}
 		j = -1;
 	}
-	return (lst);
 }
 
-void	indexing(t_ps **a, char **num_list, int *nlist)
+void	indexing(t_ps **a, t_list *ps)
 {
 	int	i;
 	int	j;
-	int	k;
-	int	*lst;
 
 	i = -1;
 	j = -1;
-	while (num_list && num_list[++i])
-		;
-	lst = malloc(sizeof(int) * i);
-	if (!lst)
+	ps->lst = malloc(sizeof(int) * ps->n_cnt);
+	if (!check_nums(ps) || !ps->lst)
 		msg("ERROR");
+	while (++i < ps->n_cnt)
+		ps->lst[i] = ft_atoi(ps->num_list[i]);
 	i = -1;
-	while (num_list[++i])
-		lst[i] = ft_atoi(num_list[i]);
-	while (++j < i)
+	while (++i < ps->n_cnt)
 	{
-		k = -1;
-		while (++k < i)
+		j = -1;
+		while (++j < ps->n_cnt)
 		{
-			if (lst[j] == nlist[k])
-				ft_lstadd_back(a, ft_lstnew(nlist[k], k));
+			if (ps->lst[i] == ps->srt_lst[j])
+				ft_lstadd_back(a, ft_lstnew(ps->srt_lst[j], j));
 		}
 	}
+	if (!check_nums2(ps))
+		msg("ERROR");
 }
 
 int	main(int argc, char **argv)
 {
 	t_ps	*a;
 	t_ps	*b;
-	int		i;
-	int		*nlist;
-	char	**num_list;
+	t_list	ps;
 
-	i = -1;
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
-	num_list = args_list(argv);
-	nlist = sorting(num_list, -1, -1, -1);
-	indexing(&a, num_list, nlist);
+	ps.num_list = args_list(argv);
+	sorting(&ps, -1, -1, -1);
+	indexing(&a, &ps);
 	return (0);
 }
