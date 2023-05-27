@@ -126,9 +126,10 @@ int	main(int argc, char **argv)
 	t_list	ps;
 
 	if (argc < 2)
-		return (0);
+		msg("ERROR");
 	ps.num_list = args_list(argv);
 	sorting(&ps, -1, -1, -1);
 	indexing(&a, &ps);
+	ra(&a);
 	return (0);
 }

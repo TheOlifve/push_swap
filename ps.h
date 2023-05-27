@@ -41,5 +41,10 @@ int		ft_lstsize(t_ps *lst);
 t_ps	*ft_lstnew(int num, int index);
 int		check_nums(t_list *ps);
 int		check_nums2(t_list *ps);
+void	sa(t_ps	*a);
+void	sb(t_ps	*b);
+void	pa(t_ps **a, t_ps **b);
+void	pb(t_ps **a, t_ps **b);
+void	ra(t_ps **a);
 
 #endif
