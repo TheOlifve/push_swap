@@ -5,40 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 13:55:25 by hrahovha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:55:40 by hrahovha         ###   ########.fr       */
+/*   Created: 2023/05/27 13:55:25 by hrahovha          #+#    #+#             */
+/*   Updated: 2023/05/27 13:55:40 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	check_nums(t_list *ps)
+void	rrra(t_ps **a)
 {
-	int	i;
-	int	j;
+	t_ps	*tmp;
+	t_ps	*tmp2;
 
-	i = -1;
-	while (++i < ps->n_cnt)
+	if (a)
 	{
-		j = i;
-		while (++j < ps->n_cnt)
-		{
-			if (ps->srt_lst[i] == ps->srt_lst[j])
-				return (0);
-		}
+		tmp = *a;
+		tmp2 = tmp->next;
+		tmp2->prev = NULL;
+		while ((*a)->next)
+			(*a) = (*a)->next;
+		(*a)->next = tmp;
+		tmp2 = tmp2->next;
+		tmp2->next = NULL;
 	}
-	return (1);
 }
 
-int	check_nums2(t_list *ps)
+void	rrrb(t_ps **b)
 {
-	int	i;
+	t_ps	*tmp;
+	t_ps	*tmp2;
 
-	i = -1;
-	while (++i < ps->n_cnt - 1)
+	if (b)
 	{
-		if (ps->lst[i] > ps->lst[i + 1])
-			return (1);
+		tmp = *b;
+		tmp2 = tmp->next;
+		tmp2->prev = NULL;
+		while ((*b)->next)
+			(*b) = (*b)->next;
+		(*b)->next = tmp;
+		tmp2 = tmp2->next;
+		tmp2->next = NULL;
 	}
-	return (0);
+}
+
+void	rrr(t_ps **a, t_ps **b)
+{
+	rrra(a);
+	rrrb(b);
+	write(1, "rrr\n", 4);
 }

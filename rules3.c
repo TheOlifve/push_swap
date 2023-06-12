@@ -12,7 +12,7 @@
 
 #include "ps.h"
 
-void	sa(t_ps *a)
+void	ssa(t_ps *a)
 {
 	int	index;
 	int	num;
@@ -26,14 +26,13 @@ void	sa(t_ps *a)
 		a->next->index = index;
 		a->next->num = num;
 	}
-	write(1, "sa\n", 3);
 }
 
-void	sb(t_ps *b)
+void	ssb(t_ps *b)
 {
 	int	index;
 	int	num;
-
+	
 	if (b && b->next)
 	{
 		index = b->index;
@@ -43,46 +42,16 @@ void	sb(t_ps *b)
 		b->next->index = index;
 		b->next->num = num;
 	}
-	write(1, "sb\n", 3);
 }
 
-void	pa(t_ps **a, t_ps **b)
+void	ss(t_ps *a, t_ps *b)
 {
-	t_ps	*tmp;
-
-	if (*b)
-	{
-		tmp = *b;
-		*b = (*b)->next;
-		if (*b)
-			(*b)->prev = NULL;
-		tmp->next = *a;
-		if (*a)
-			(*a)->prev = tmp;
-		*a = tmp;
-	}
-	write(1, "pa\n", 3);
+	ssa(a);
+	ssb(b);
+	write(1, "ss\n", 3);
 }
 
-void	pb(t_ps **a, t_ps **b)
-{
-	t_ps	*tmp;
-
-	if (*a)
-	{
-		tmp = *a;
-		*a = (*a)->next;
-		if (*a)
-			(*a)->prev = NULL;
-		tmp->next = *b;
-		if (*b)
-			(*b)->prev = tmp;
-		*b = tmp;
-	}
-	write(1, "pb\n", 3);
-}
-
-void	ra(t_ps **a)
+void	rra(t_ps **a)
 {
 	t_ps	*tmp;
 	t_ps	*tmp2;
@@ -95,10 +64,27 @@ void	ra(t_ps **a)
 		while ((*a)->next)
 			(*a) = (*a)->next;
 		(*a)->next = tmp;
-		tmp->prev = (*a);
-		tmp->next = NULL;
-		(*a) = (*a)->next;
-		(*a) = tmp2;
+		tmp2 = tmp2->next;
+		tmp2->next = NULL;
 	}
-	write(1, "ra\n", 3);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_ps **b)
+{
+	t_ps	*tmp;
+	t_ps	*tmp2;
+
+	if (b)
+	{
+		tmp = *b;
+		tmp2 = tmp->next;
+		tmp2->prev = NULL;
+		while ((*b)->next)
+			(*b) = (*b)->next;
+		(*b)->next = tmp;
+		tmp2 = tmp2->next;
+		tmp2->next = NULL;
+	}
+	write(1, "rrb\n", 4);
 }

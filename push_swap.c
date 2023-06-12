@@ -130,6 +130,11 @@ int	main(int argc, char **argv)
 	ps.num_list = args_list(argv);
 	sorting(&ps, -1, -1, -1);
 	indexing(&a, &ps);
-	ra(&a);
+	//rrr(&a, &b);
 	return (0);
 }
+
+		// printf("%d\n",(*a)->num);
+		// printf("%d\n",(*a)->next->num);
+		// printf("%d\n",(*a)->next->next->num);
+		// printf("%d\n",(*a)->next->next->next->num);

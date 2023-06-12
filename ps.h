@@ -43,8 +43,14 @@ int		check_nums(t_list *ps);
 int		check_nums2(t_list *ps);
 void	sa(t_ps	*a);
 void	sb(t_ps	*b);
+void	ss(t_ps *a, t_ps *b);
 void	pa(t_ps **a, t_ps **b);
 void	pb(t_ps **a, t_ps **b);
 void	ra(t_ps **a);
+void	rb(t_ps **b);
+void	rr(t_ps **a, t_ps **b);
+void	rra(t_ps **a);
+void	rrb(t_ps **b);
+void	rrr(t_ps **a, t_ps **b);
 
 #endif
