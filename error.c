@@ -42,3 +42,18 @@ int	check_nums2(t_list *ps)
 	}
 	return (0);
 }
+
+int	check_nums3(int i)
+{
+	if (i >= 0)
+	{
+		if (ft_strlen(ft_itoa(i)) > 10)
+			msg("ERROR");
+	}
+	else
+	{
+		if (ft_strlen(ft_itoa(i)) > 11)
+			msg("ERROR");
+	}
+	return (0);
+}

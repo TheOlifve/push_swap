@@ -1,0 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/11 13:55:25 by hrahovha          #+#    #+#             */
+/*   Updated: 2023/05/11 13:55:40 by hrahovha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ps.h"
+
+void	sort_3(t_ps *a)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = a->index;
+	j = a->next->index;
+	k = a->next->next->index;
+	if (i < j < k)
+		;
+	else if (i > j && j < k && i < k)
+		sa(a);
+	else if (i > j && j < k && i > k)
+		ra(&a);
+	else if (i < j && j > k && i < k)
+	{
+		rra(&a);
+		sa(a);
+	}
+	else if (i < j && j > k && i > k)
+		rra(&a);
+	else if (i > j && j > k && i > k)
+	{
+		ra(&a);
+		sa(a);
+	}
+}
+
+int	find_min(t_ps *a, t_list *ps)
+{
+	int	i;
+
+	i = 0;
+	while(a->index != ps->min_index)
+	{
+		i++;
+		a = a->next;
+	}
+	ps->min_index += 1;
+	return (i);
+}
+
+void	sort_more(t_ps *a, t_ps *b, t_list *ps)
+{
+	int	i;
+
+	i = find_min(a, ps);
+	if (i <= ps->n_cnt / 2)
+	{
+		while (--i > 0)
+			ra(&a);
+		pb(&a, &b);
+	}
+	else if (i > ps->n_cnt / 2)
+	{
+		while (i < ps->n_cnt)
+		{
+			i++;
+			rra(&a);
+		}
+		pb(&a, &b);
+	}
+}
+
+void	sort(t_ps *a, t_ps *b, t_list *ps)
+{
+	while (ps->n_cnt2 > 3)
+	{
+		sort_more(a, b, ps);
+		ps->n_cnt2 -= 1;
+	}
+	sort_3(a);
+	while (b->next != NULL)
+	{
+		pa(&a, &b);
+		b = b->next;
+	}
+}
+/*		11 23 32 | 11 32 23
+		23 11 32 | 23 32 11
+		32 11 23 | 32 23 11*/

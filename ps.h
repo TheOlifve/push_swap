@@ -28,19 +28,23 @@ typedef struct s_ps
 
 typedef struct s_list
 {
-	char	**num_list;
-	int		*srt_lst;
-	int		*lst;
-	int		n_cnt;
-	int		tmp;
+	char			**num_list;
+	char			**num_list2;
+	long		*srt_lst;
+	long		*lst;
+	int			n_cnt;
+	int			n_cnt2;
+	long		tmp;
+	int			min_index;
 }t_list;
 
-void	ft_lstadd_back(t_ps **lst, t_ps *new);
-t_ps	*ft_lstlast(t_ps *lst);
 int		ft_lstsize(t_ps *lst);
-t_ps	*ft_lstnew(int num, int index);
 int		check_nums(t_list *ps);
 int		check_nums2(t_list *ps);
+int		check_nums3(int i);
+int		find_min(t_ps *a, t_list *ps);
+t_ps	*ft_lstlast(t_ps *lst);
+t_ps	*ft_lstnew(int num, int index);
 void	sa(t_ps	*a);
 void	sb(t_ps	*b);
 void	ss(t_ps *a, t_ps *b);
@@ -52,5 +56,8 @@ void	rr(t_ps **a, t_ps **b);
 void	rra(t_ps **a);
 void	rrb(t_ps **b);
 void	rrr(t_ps **a, t_ps **b);
+void	sort_3(t_ps *a);
+void	ft_lstadd_back(t_ps **lst, t_ps *new);
+void	sort(t_ps *a, t_ps *b, t_list *ps);
 
 #endif

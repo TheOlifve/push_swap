@@ -32,7 +32,7 @@ void	ssb(t_ps *b)
 {
 	int	index;
 	int	num;
-	
+
 	if (b && b->next)
 	{
 		index = b->index;

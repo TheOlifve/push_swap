@@ -12,9 +12,9 @@
 
 #include "utils.h"
 
-int	num_len(int n)
+long	num_len(long n)
 {
-	int	i;
+	long	i;
 
 	i = 1;
 	if (n > 9)
@@ -37,10 +37,10 @@ int	num_len(int n)
 	return (i);
 }
 
-char	*is_pos(int n)
+char	*is_pos(long n)
 {
-	int		len;
-	char	*s;
+	long		len;
+	char		*s;
 
 	len = num_len(n);
 	s = malloc(len + 1);
@@ -56,10 +56,10 @@ char	*is_pos(int n)
 	return (s);
 }
 
-char	*is_neg(int n)
+char	*is_neg(long n)
 {
-	int		len;
-	char	*s;
+	long		len;
+	char		*s;
 
 	len = num_len(n);
 	s = malloc(len + 1);
@@ -76,7 +76,7 @@ char	*is_neg(int n)
 	return (s);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
 	if (n >= 0)
 		return (is_pos(n));

@@ -12,7 +12,7 @@
 
 #include "utils.h"
 
-int	ft_ato(const char *str, int i, int num)
+long	ft_ato(const char *str, int i, long int num)
 {
 	int	is_neg;
 
@@ -40,9 +40,14 @@ int	ft_ato(const char *str, int i, int num)
 	return (num * is_neg);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
+	long	i;
+
 	if (!str)
 		return (0);
-	return (ft_ato(str, 0, 0));
+	i = ft_ato(str, 0, 0);
+	if (i > 2147483647 || i < -2147483648)
+		msg ("ERROR");
+	return (i);
 }

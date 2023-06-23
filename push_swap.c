@@ -72,11 +72,11 @@ void	sorting(t_list *ps, int i, int j, int k)
 	while (ps->num_list && ps->num_list[++k])
 		;
 	ps->n_cnt = k;
-	ps->srt_lst = malloc(sizeof(int) * k);
+	ps->srt_lst = malloc(sizeof(long) * k);
 	if (!ps->srt_lst)
 		msg("ERROR");
 	k = -1;
-	while (ps->num_list[++k])
+	while (ps->num_list && ps->num_list[++k])
 		ps->srt_lst[k] = ft_atoi(ps->num_list[k]);
 	while (++i < k)
 	{
@@ -84,6 +84,7 @@ void	sorting(t_list *ps, int i, int j, int k)
 		{
 			if (ps->srt_lst[i] < ps->srt_lst[j])
 			{
+				
 				ps->tmp = ps->srt_lst[i];
 				ps->srt_lst[i] = ps->srt_lst[j];
 				ps->srt_lst[j] = ps->tmp;
@@ -93,14 +94,12 @@ void	sorting(t_list *ps, int i, int j, int k)
 	}
 }
 
-void	indexing(t_ps **a, t_list *ps)
+void	indexing(t_ps **a, t_list *ps, int i)
 {
-	int	i;
 	int	j;
 
-	i = -1;
 	j = -1;
-	ps->lst = malloc(sizeof(int) * ps->n_cnt);
+	ps->lst = malloc(sizeof(long) * ps->n_cnt);
 	if (!check_nums(ps) || !ps->lst)
 		msg("ERROR");
 	while (++i < ps->n_cnt)
@@ -112,7 +111,10 @@ void	indexing(t_ps **a, t_list *ps)
 		while (++j < ps->n_cnt)
 		{
 			if (ps->lst[i] == ps->srt_lst[j])
+			{
 				ft_lstadd_back(a, ft_lstnew(ps->srt_lst[j], j));
+				check_nums3(ps->srt_lst[j]);
+			}
 		}
 	}
 	if (!check_nums2(ps))
@@ -127,10 +129,12 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		msg("ERROR");
+	ps.min_index = 0;
 	ps.num_list = args_list(argv);
 	sorting(&ps, -1, -1, -1);
-	indexing(&a, &ps);
-	//rrr(&a, &b);
+	ps.n_cnt2 = ps.n_cnt;
+	indexing(&a, &ps, -1);
+	sort(a, b, &ps);
 	return (0);
 }
 

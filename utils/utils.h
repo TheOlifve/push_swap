@@ -24,23 +24,22 @@
 # include <unistd.h>
 # include "../ps.h"
 
-char	*get_next_line(int fd);
-int		msg(char *str);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_printf(const char *str, ...);
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int c);
-int		ft_strrncmp(const char *s1);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_itoa(int n);
-char	**ft_split(char const *s, char c);
-int		ft_atoi(const char *str);
-int		ft_strcmp(char *s1, char *s2);
-void	*ft_memset(void *s, int c, size_t n);
-int		ft_atoi(const char *str);
+char		*get_next_line(int fd);
+int			msg(char *str);
+int			ft_strcmp(char *s1, char *s2);
+int			ft_printf(const char *str, ...);
+size_t		ft_strlen(const char *str);
+char		*ft_strchr(const char *s, int c);
+int			ft_strrncmp(const char *s1);
+char		*ft_strrchr(const char *s, int c);
+char		*ft_strdup(const char *s1);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_itoa(long n);
+char		**ft_split(char const *s, char c);
+long int	ft_atoi(const char *str);
+int			ft_strcmp(char *s1, char *s2);
+void		*ft_memset(void *s, int c, size_t n);
 
 #endif
