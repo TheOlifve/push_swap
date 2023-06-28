@@ -61,33 +61,28 @@ void	sort_more(t_ps **a, t_ps **b, t_list *ps)
 
 	i = find_min(a, ps);
 	if (i <= ps->n_cnt / 2)
-	{
 		while (--i >= 0)
 			ra(a);
-		pb(a, b);
-	}
 	else if (i > ps->n_cnt / 2)
-	{
-		while (i < ps->n_cnt)
-		{
-			i++;
+		while (i++ < ps->n_cnt)
 			rra(a);
-		}
-		pb(a, b);
-	}
+	ps->n_cnt -= 1;
+	pb(a, b);
 }
 
 void	sort(t_ps **a, t_ps **b, t_list *ps)
 {
-	//printf("%d\n",ps->n_cnt2);
-	while (ps->n_cnt2 > 3)
+	if (ps->n_cnt == 2)
+		sa(*a);
+	else if (ps->n_cnt2 <= 12)
 	{
-		sort_more(a, b, ps);
-		ps->n_cnt2 -= 1;
+		while (ps->n_cnt2 > 3)
+		{
+			sort_more(a, b, ps);
+			ps->n_cnt2 -= 1;
+		}
+		sort_3(a);
+		while (*b)
+			pa(a, b);
 	}
-	sort_3(a);
-	//pa(&a, &b);
 }
-/*		11 23 32 | 11 32 23
-		23 11 32 | 23 32 11
-		32 11 23 | 32 23 11*/
