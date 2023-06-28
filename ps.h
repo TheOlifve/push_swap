@@ -42,7 +42,7 @@ int		ft_lstsize(t_ps *lst);
 int		check_nums(t_list *ps);
 int		check_nums2(t_list *ps);
 int		check_nums3(int i);
-int		find_min(t_ps *a, t_list *ps);
+int		find_min(t_ps **a, t_list *ps);
 t_ps	*ft_lstlast(t_ps *lst);
 t_ps	*ft_lstnew(int num, int index);
 void	sa(t_ps	*a);
@@ -56,8 +56,8 @@ void	rr(t_ps **a, t_ps **b);
 void	rra(t_ps **a);
 void	rrb(t_ps **b);
 void	rrr(t_ps **a, t_ps **b);
-void	sort_3(t_ps *a);
+void	sort_3(t_ps **a);
 void	ft_lstadd_back(t_ps **lst, t_ps *new);
-void	sort(t_ps *a, t_ps *b, t_list *ps);
+void	sort(t_ps **a, t_ps **b, t_list *ps);
 
 #endif

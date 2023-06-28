@@ -127,14 +127,17 @@ int	main(int argc, char **argv)
 	t_ps	*b;
 	t_list	ps;
 
+
 	if (argc < 2)
 		msg("ERROR");
+	a = NULL;
+	b = NULL;
 	ps.min_index = 0;
 	ps.num_list = args_list(argv);
 	sorting(&ps, -1, -1, -1);
 	ps.n_cnt2 = ps.n_cnt;
 	indexing(&a, &ps, -1);
-	sort(a, b, &ps);
+	sort(&a, &b, &ps);
 	return (0);
 }
 

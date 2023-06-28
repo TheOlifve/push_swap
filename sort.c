@@ -12,84 +12,81 @@
 
 #include "ps.h"
 
-void	sort_3(t_ps *a)
+void	sort_3(t_ps **a)
 {
 	int	i;
 	int	j;
 	int	k;
 
-	i = a->index;
-	j = a->next->index;
-	k = a->next->next->index;
-	if (i < j < k)
+	i = (*a)->index;
+	j = (*a)->next->index;
+	k = (*a)->next->next->index;
+	if (i < j && j < k && i < k)
 		;
 	else if (i > j && j < k && i < k)
-		sa(a);
+		sa(*a);
 	else if (i > j && j < k && i > k)
-		ra(&a);
+		ra(a);
 	else if (i < j && j > k && i < k)
 	{
-		rra(&a);
-		sa(a);
+		rra(a);
+		sa(*a);
 	}
 	else if (i < j && j > k && i > k)
-		rra(&a);
+		rra(a);
 	else if (i > j && j > k && i > k)
 	{
-		ra(&a);
-		sa(a);
+		ra(a);
+		sa(*a);
 	}
 }
 
-int	find_min(t_ps *a, t_list *ps)
+int	find_min(t_ps **a, t_list *ps)
 {
 	int	i;
 
 	i = 0;
-	while(a->index != ps->min_index)
+	while((*a)->next && (*a)->index != ps->min_index)
 	{
 		i++;
-		a = a->next;
+		a = &(*a)->next;
 	}
 	ps->min_index += 1;
 	return (i);
 }
 
-void	sort_more(t_ps *a, t_ps *b, t_list *ps)
+void	sort_more(t_ps **a, t_ps **b, t_list *ps)
 {
 	int	i;
 
 	i = find_min(a, ps);
 	if (i <= ps->n_cnt / 2)
 	{
-		while (--i > 0)
-			ra(&a);
-		pb(&a, &b);
+		while (--i >= 0)
+			ra(a);
+		pb(a, b);
 	}
 	else if (i > ps->n_cnt / 2)
 	{
 		while (i < ps->n_cnt)
 		{
 			i++;
-			rra(&a);
+			rra(a);
 		}
-		pb(&a, &b);
+		pb(a, b);
 	}
 }
 
-void	sort(t_ps *a, t_ps *b, t_list *ps)
+void	sort(t_ps **a, t_ps **b, t_list *ps)
 {
+	//printf("%d\n",ps->n_cnt2);
 	while (ps->n_cnt2 > 3)
 	{
 		sort_more(a, b, ps);
 		ps->n_cnt2 -= 1;
 	}
 	sort_3(a);
-	while (b->next != NULL)
-	{
-		pa(&a, &b);
-		b = b->next;
-	}
+	//pa(&a, &b);
 }
 /*		11 23 32 | 11 32 23
 		23 11 32 | 23 32 11
