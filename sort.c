@@ -70,11 +70,21 @@ void	sort_more(t_ps **a, t_ps **b, t_list *ps)
 	pb(a, b);
 }
 
+void	n_sqrt(t_list *ps)
+{
+	int	i;
+
+	i = 0;
+	while (i * i <= ps->n_cnt)
+		i++;
+	ps->n_sqrt = i;
+}
+
 void	sort(t_ps **a, t_ps **b, t_list *ps)
 {
 	if (ps->n_cnt == 2)
 		sa(*a);
-	else if (ps->n_cnt2 <= 12)
+	else if (ps->n_cnt <= 12)
 	{
 		while (ps->n_cnt2 > 3)
 		{
@@ -84,5 +94,14 @@ void	sort(t_ps **a, t_ps **b, t_list *ps)
 		sort_3(a);
 		while (*b)
 			pa(a, b);
+	}
+	else
+	{
+		n_sqrt(ps);
+		while (*a)
+			butterfly(a, b, ps);
+		ps->n_cnt -= 1;
+		while (*b)
+			here_we_go(a, b, ps);
 	}
 }

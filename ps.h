@@ -34,6 +34,9 @@ typedef struct s_list
 	long		*lst;
 	int			n_cnt;
 	int			n_cnt2;
+	int			n_sqrt;
+	int			cnt;
+	int			test;
 	long		tmp;
 	int			min_index;
 }t_list;
@@ -59,5 +62,7 @@ void	rrr(t_ps **a, t_ps **b);
 void	sort_3(t_ps **a);
 void	ft_lstadd_back(t_ps **lst, t_ps *new);
 void	sort(t_ps **a, t_ps **b, t_list *ps);
+void    butterfly(t_ps **a, t_ps **b, t_list *ps);
+void    here_we_go(t_ps **a, t_ps **b, t_list *ps);
 
 #endif

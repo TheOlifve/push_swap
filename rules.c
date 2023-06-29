@@ -87,7 +87,7 @@ void	ra(t_ps **a)
 	t_ps	*tmp;
 	t_ps	*tmp2;
 
-	if (a)
+	if (a && (*a)->next)
 	{
 		tmp = *a;
 		tmp2 = tmp->next;

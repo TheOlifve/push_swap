@@ -17,7 +17,7 @@ void	rb(t_ps **b)
 	t_ps	*tmp;
 	t_ps	*tmp2;
 
-	if (b)
+	if (b && (*b)->next)
 	{
 		tmp = (*b);
 		tmp2 = tmp->next;
