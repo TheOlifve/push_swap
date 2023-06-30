@@ -18,41 +18,31 @@ void    butterfly(t_ps **a, t_ps **b, t_list *ps)
 	{
 		pb(a, b);
 		rb(b);
-			ps->test += 2; //
 		ps->cnt += 1;
 	}
 	else if ((*a)->index <= ps->cnt + ps->n_sqrt)
 	{
-			ps->test += 1; //
 		pb(a, b);
 		ps->cnt += 1;
 	}
 	else
-	{                      //
 		ra(a);
-			ps->test += 1; //
-	}                      //	
 }
 
 void    here_we_go(t_ps **a, t_ps **b, t_list *ps)
 {
-	int i;
+	int 	i;
 
 	i = 0;
-	// t_ps **tmp = b;
-	// while (*b)
-	// {
-	// 	printf("B - %d\n",(*b)->index);
-	// 	*b = (*b)->next;
-	// }
-	// *b = *tmp;
-   while ((*b)->index != ps->n_cnt)
-   {
+	t_ps *t;
+	
+	t = *b;
+	while (t && t->index != ps->n_cnt)
+	{
 		i++;
-		*b = (*b)->next;
-   }
-   printf("i - %d\n",i);
-	if (i <= ps->n_cnt / 2)
+		t = t->next;
+	}
+	if (i <= (ps->n_cnt / 2))
 		while (i-- > 0)
 			rb(b);
 	else

@@ -73,11 +73,20 @@ void	sort_more(t_ps **a, t_ps **b, t_list *ps)
 void	n_sqrt(t_list *ps)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (i * i <= ps->n_cnt)
 		i++;
-	ps->n_sqrt = i;
+	ps->n_sqrt = i - 1;
+	i = 1;
+	while (i <= ps->n_cnt)
+	{
+		i *= 2;
+		j++;
+	}
+	ps->n_sqrt += j - 1;
 }
 
 void	sort(t_ps **a, t_ps **b, t_list *ps)

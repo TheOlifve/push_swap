@@ -36,7 +36,6 @@ typedef struct s_list
 	int			n_cnt2;
 	int			n_sqrt;
 	int			cnt;
-	int			test;
 	long		tmp;
 	int			min_index;
 }t_list;

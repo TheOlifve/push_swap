@@ -127,7 +127,6 @@ int	main(int argc, char **argv)
 	t_ps	*b;
 	t_list	ps;
 
-	ps.test = 0;
 	if (argc < 2)
 		msg("ERROR");
 	a = NULL;
@@ -138,7 +137,6 @@ int	main(int argc, char **argv)
 	ps.n_cnt2 = ps.n_cnt;
 	indexing(&a, &ps, -1);
 	sort(&a, &b, &ps);
-	printf("%d\n",ps.test);
 	return (0);
 }
 

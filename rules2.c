@@ -17,7 +17,7 @@ void	rb(t_ps **b)
 	t_ps	*tmp;
 	t_ps	*tmp2;
 
-	if (b && (*b)->next)
+	if (*b && (*b)->next)
 	{
 		tmp = (*b);
 		tmp2 = tmp->next;
@@ -56,12 +56,15 @@ void	rra(t_ps **a)
 	{
 		tmp = *a;
 		while ((*a)->next)
-			(*a) = (*a)->next;
-		tmp2 = (*a)->prev;
-		(*a)->next = tmp;
-		(*a)->prev = NULL;
-		tmp->prev = *a;
-		tmp2->next = NULL;
+			*a = (*a)->next;
+		tmp2 = *a;
+		*a = (*a)->prev;
+		(*a)->next = NULL;
+		*a = tmp;
+		tmp2->next = *a;
+		tmp2->prev = NULL;
+		(*a)->prev = tmp2;
+		(*a) = tmp2;
 	}
 	write(1, "rra\n", 4);
 }
@@ -75,12 +78,22 @@ void	rrb(t_ps **b)
 	{
 		tmp = *b;
 		while ((*b)->next)
-			(*b) = (*b)->next;
-		tmp2 = (*b)->prev;
-		(*b)->next = tmp;
-		(*b)->prev = NULL;
-		tmp->prev = *b;
-		tmp2->next = NULL;
+			*b = (*b)->next;
+		tmp2 = *b;
+		*b = (*b)->prev;
+		(*b)->next = NULL;
+		*b = tmp;
+		tmp2->next = *b;
+		tmp2->prev = NULL;
+		(*b)->prev = tmp2;
+		(*b) = tmp2;
 	}
+	// t_ps *h = *b;
+	// while (*b)
+	// {
+	// 	printf ("mejiny: %d\n", (*b)->num);
+	// 	*b = (*b)->next;
+	// }
+	// *b = h;
 	write(1, "rrb\n", 4);
 }
