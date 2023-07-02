@@ -24,7 +24,6 @@ SRC =	get_next_line.c	\
 		ft_printf.c		\
 		ft_memset.c		\
 		ft_atoi.c		\
-		ft_lstnew.c		\
 		ft_strcmp.c		\
 		ft_strncmp.c	\
 		msg.c			
