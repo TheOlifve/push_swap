@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps.h"
+#include "bps.h"
 
 void	sa(t_ps *a)
 {
@@ -26,7 +26,6 @@ void	sa(t_ps *a)
 		a->next->index = index;
 		a->next->num = num;
 	}
-	write(1, "sa\n", 3);
 }
 
 void	sb(t_ps *b)
@@ -43,7 +42,6 @@ void	sb(t_ps *b)
 		b->next->index = index;
 		b->next->num = num;
 	}
-	write(1, "sb\n", 3);
 }
 
 void	pa(t_ps **a, t_ps **b)
@@ -61,7 +59,6 @@ void	pa(t_ps **a, t_ps **b)
 			(*a)->prev = tmp;
 		*a = tmp;
 	}
-	write(1, "pa\n", 3);
 }
 
 void	pb(t_ps **a, t_ps **b)
@@ -79,7 +76,6 @@ void	pb(t_ps **a, t_ps **b)
 			(*b)->prev = tmp;
 		*b = tmp;
 	}
-	write(1, "pb\n", 3);
 }
 
 void	ra(t_ps **a)
@@ -100,5 +96,4 @@ void	ra(t_ps **a)
 		(*a) = (*a)->next;
 		(*a) = tmp2;
 	}
-	write(1, "ra\n", 3);
 }

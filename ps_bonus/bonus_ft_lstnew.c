@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:10:19 by hrahovha          #+#    #+#             */
-/*   Updated: 2023/01/27 17:28:25 by hrahovha         ###   ########.fr       */
+/*   Created: 2023/01/26 17:02:14 by hrahovha          #+#    #+#             */
+/*   Updated: 2023/01/31 14:34:26 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps.h"
+#include "bps.h"
 
-void	ft_lstadd_back(t_ps **lst, t_ps *new)
+t_ps	*ft_lstnew(int num, int index)
 {
-	t_ps	*k;
+	t_ps	*new;
 
-	k = *lst;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	k = ft_lstlast(*lst);
-	k->next = new;
-	new->prev = k;
+	new = (t_ps *)malloc(sizeof(t_ps));
+	if (!new)
+		return (NULL);
+	new->num = num;
+	new->index = index;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:10:19 by hrahovha          #+#    #+#             */
-/*   Updated: 2023/01/27 17:28:25 by hrahovha         ###   ########.fr       */
+/*   Created: 2023/01/26 19:06:13 by hrahovha          #+#    #+#             */
+/*   Updated: 2023/01/31 14:20:10 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps.h"
+#include "bps.h"
 
-void	ft_lstadd_back(t_ps **lst, t_ps *new)
+t_ps	*ft_lstlast(t_ps *lst)
 {
-	t_ps	*k;
-
-	k = *lst;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	k = ft_lstlast(*lst);
-	k->next = new;
-	new->prev = k;
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps.h"
+#include "bps.h"
 
 int	valid_args(char **argv, int i, int j)
 {
@@ -136,7 +136,7 @@ int	main(int argc, char **argv)
 	sorting(&ps, -1, -1, -1);
 	ps.n_cnt2 = ps.n_cnt;
 	indexing(&a, &ps, -1);
-	sort(&a, &b, &ps);
+	ft_checker(&a, &b);
 	return (0);
 }
 

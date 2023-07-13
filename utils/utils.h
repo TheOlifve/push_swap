@@ -22,7 +22,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../ps.h"
 
 char		*get_next_line(int fd);
 int			msg(char *str);

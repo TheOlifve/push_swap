@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps.h"
+#include "bps.h"
 
 void	rb(t_ps **b)
 {
@@ -30,21 +30,18 @@ void	rb(t_ps **b)
 		(*b) = (*b)->next;
 		(*b) = tmp2;
 	}
-	write(1, "rb\n", 3);
 }
 
 void	rr(t_ps **a, t_ps **b)
 {
 	ra(a);
 	rb(b);
-	write(1, "rr\n", 3);
 }
 
 void	ss(t_ps *a, t_ps *b)
 {
 	sa(a);
 	sb(b);
-	write(1, "ss\n", 3);
 }
 
 void	rra(t_ps **a)
@@ -66,7 +63,6 @@ void	rra(t_ps **a)
 		(*a)->prev = tmp2;
 		(*a) = tmp2;
 	}
-	write(1, "rra\n", 4);
 }
 
 void	rrb(t_ps **b)
@@ -88,12 +84,4 @@ void	rrb(t_ps **b)
 		(*b)->prev = tmp2;
 		(*b) = tmp2;
 	}
-	// t_ps *h = *b;
-	// while (*b)
-	// {
-	// 	printf ("mejiny: %d\n", (*b)->num);
-	// 	*b = (*b)->next;
-	// }
-	// *b = h;
-	write(1, "rrb\n", 4);
 }
