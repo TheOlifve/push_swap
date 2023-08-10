@@ -39,32 +39,32 @@ int	valid_args(char **argv, int i, int j)
 	return (1);
 }
 
-char	**args_list(char **argv, char *tmp_lst, int i, int j)
+char	**args_list(char **argv, char *tmp1, int i, int j)
 {
 	char	**tmp;
 	char	*num_list;
+	char	*tmp2;
 
-	num_list = ft_strdup("");
-	if (!valid_args(argv, 0, 0) || !num_list)
-		msg("ERROR");
+	tmp2 = ft_strdup("");
 	while (argv[++i])
 	{
 		tmp = ft_split(argv[i], ' ');
 		while (tmp[++j])
 		{
-			tmp_lst = num_list;
+			tmp1 = ft_strdup(tmp[j]);
+			num_list = ft_strjoin(tmp2, tmp1);
+			if (tmp2)
+				free(tmp2);
+			tmp2 = ft_strdup(num_list);
+			free(tmp1);
 			free(num_list);
-			num_list = ft_strjoin(tmp_lst, tmp[j]);
-			tmp_lst = num_list;
-			free(num_list);
-			num_list = ft_strjoin(tmp_lst, " ");
 			free(tmp[j]);
 		}
 		free(tmp);
 		j = -1;
 	}
-	tmp = ft_split(num_list, ' ');
-	free(num_list);
+	tmp = ft_split(tmp2, ' ');
+	free(tmp2);
 	return (tmp);
 }
 
@@ -117,8 +117,6 @@ void	indexing(t_ps **a, t_list *ps, int i)
 			}
 		}
 	}
-	if (!check_nums2(ps) && ps->n_cnt > 1)
-		exit (0);
 }
 
 int	main(int argc, char **argv)
