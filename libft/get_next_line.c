@@ -57,7 +57,7 @@ static char	*ft_str(int fd, char *str, int i, char *temp)
 			str = ft_strdup("");
 		temp = ft_strdup(str);
 		free(str);
-		str = ft_strjoin1(temp, buff);
+		str = ft_strj(temp, buff);
 		free(temp);
 		temp = NULL;
 		if (ft_strchr(str, '\n'))

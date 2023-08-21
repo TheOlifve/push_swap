@@ -26,7 +26,7 @@ SRC =	get_next_line.c	\
 		ft_atoi.c		\
 		ft_strcmp.c		\
 		ft_strncmp.c	\
-		ft_strjoin1.c	\
+		ft_strj.c	\
 		msg.c			
 
 OBJ = $(SRC:.c=.o)

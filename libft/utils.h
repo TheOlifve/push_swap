@@ -40,6 +40,6 @@ char		**ft_split(char const *s, char c);
 long int	ft_atoi(const char *str);
 int			ft_strcmp(char *s1, char *s2);
 void		*ft_memset(void *s, int c, size_t n);
-char		*ft_strjoin1(char const *s1, char const *s2);
+char		*ft_strj(char const *s1, char const *s2);
 
 #endif

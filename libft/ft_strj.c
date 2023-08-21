@@ -12,7 +12,7 @@
 
 #include "utils.h"
 
-char	*ft_strjoin1(char const *s1, char const *s2)
+char	*ft_strj(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	s1_len;
